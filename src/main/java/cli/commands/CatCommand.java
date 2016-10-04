@@ -1,7 +1,15 @@
 package cli.commands;
 
+import cli.Command;
+
+import java.util.List;
+
 /**
  * @author natalia on 03.10.16.
  */
-public class CatCommand {
+public class CatCommand extends Command {
+
+    protected String execute(List<String> args, String input) {
+        return null;
+    }
 }
