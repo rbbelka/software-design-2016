@@ -5,11 +5,12 @@ import cli.Command;
 import java.util.List;
 
 /**
- * @author natalia on 03.10.16.
+ * command outputs a string of given args
+ * ignores input from pipe
  */
 public class EchoCommand extends Command {
 
     protected String execute(List<String> args, String input) {
-        return null;
+        return String.join(" ", args);
     }
 }

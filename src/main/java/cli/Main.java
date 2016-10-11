@@ -29,7 +29,7 @@ public class Main {
     }
 
     public static String handle(String line) {
-        Command command = Parser.parse(line);
+        Parser.parse(line);
         return "temp";
     }
 }

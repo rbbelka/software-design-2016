@@ -5,11 +5,11 @@ import cli.Command;
 import java.util.List;
 
 /**
- * @author natalia on 03.10.16.
+ * command outputs current working directory
  */
 public class PwdCommand extends Command {
 
     protected String execute(List<String> args, String input) {
-        return null;
+        return System.getProperty("user.dir");
     }
 }
