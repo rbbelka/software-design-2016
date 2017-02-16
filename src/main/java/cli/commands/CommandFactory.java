@@ -18,6 +18,8 @@ public class CommandFactory {
         commandMap.put("pwd", new PwdCommand());
         commandMap.put("exit", new ExitCommand());
         commandMap.put("grep", new GrepCommand());
+        commandMap.put("ls", new LsCommand());
+        commandMap.put("cd", new CdCommand());
     }
 
 
