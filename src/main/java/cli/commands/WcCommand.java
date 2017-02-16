@@ -1,7 +1,5 @@
 package cli.commands;
 
-import cli.Command;
-
 import java.io.*;
 import java.util.List;
 
@@ -9,14 +7,14 @@ import java.util.List;
  * command counts words in file or input from pipe
  */
 
-public class WcCommand extends Command {
+public class WcCommand implements Command {
 
     /**
      * if args passed - wc counts words in first arg
      * otherwise counts words in input
      * if no args or input provided returns "0"
      */
-    protected String execute(List<String> args, String input) {
+    public String execute(List<String> args, String input) {
 
         if (args.size() == 0) {
             if (input == null)

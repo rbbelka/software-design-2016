@@ -1,15 +1,14 @@
 package cli.commands;
 
-import cli.Command;
-
+import java.io.PrintStream;
 import java.util.List;
 
 /**
  * command outputs current working directory
  */
-public class PwdCommand extends Command {
+public class PwdCommand implements Command {
 
-    protected String execute(List<String> args, String input) {
+    public String execute(List<String> args, String input) {
         return System.getProperty("user.dir");
     }
 }

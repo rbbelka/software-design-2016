@@ -1,15 +1,14 @@
 package cli.commands;
 
-import cli.Command;
-
+import java.io.PrintStream;
 import java.util.List;
 
 /**
  * command terminates the app
  */
-public class ExitCommand extends Command {
+public class ExitCommand implements Command {
 
-    protected String execute(List<String> args, String input) {
+    public String execute(List<String> args, String input) {
         System.exit(0);
         return null;
     }
