@@ -50,10 +50,11 @@ public class GrepCommand implements Command {
             pattern = Pattern.compile(arg);
         }
 
+        StringBuilder output = new StringBuilder();
         if (args.isEmpty()) {
-            return findMatches(pattern, input);
+            output.append(findMatches(pattern, input));
         } else {
-            StringBuilder output = new StringBuilder();
+
             for (String path : args) {
                 try {
                     output.append(findMatches(pattern, new Scanner(new File(path)).useDelimiter("\\Z").next()));
@@ -61,8 +62,16 @@ public class GrepCommand implements Command {
                     System.err.println("File " + path + " is nit found");
                 }
             }
-            return output.toString();
         }
+        restoreOptions();
+
+        return output.toString();
+    }
+
+    private void restoreOptions() {
+        caseInsensitive = false;
+        fullWords = false;
+        linesToPrint = 0;
     }
 
     private String findMatches(Pattern pattern, String input) {

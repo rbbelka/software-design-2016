@@ -16,8 +16,9 @@ public class CdCommand implements Command {
             Path path = Paths.get(currentDir).resolve(args.get(0));
             if(!Files.isDirectory(path)) {
                 System.err.println("Incorrect path");
+            } else {
+                System.setProperty("user.dir", path.toString());
             }
-            System.setProperty("user.dir", path.toString());
         }
         return "";
     }
