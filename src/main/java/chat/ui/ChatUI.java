@@ -1,5 +1,7 @@
 package chat.ui;
 
+import chat.core.Receiver;
+import chat.core.ReceiverClient;
 import chat.core.Sender;
 import chat.core.SendingStatusCallback;
 
@@ -11,6 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -44,8 +47,21 @@ public class ChatUI {
                 }
                 ChatUI chatUI = new ChatUI();
                 chatUI.preDisplay();
+                try {
+                    Receiver receiver = new Receiver(PORT, 4, new ReceiverClient() {
+                        public void processMessage(String senderName, String senderIp, String message) {
+                            chatUI.displayMessage(senderName + " (" + senderIp + "): " + message);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
+    }
+
+    private void displayMessage(String s) {
+        chatBox.append(s);
     }
 
     private void preDisplay() {
