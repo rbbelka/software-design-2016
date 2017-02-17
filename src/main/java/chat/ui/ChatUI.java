@@ -1,5 +1,8 @@
 package chat.ui;
 
+import chat.core.Sender;
+import chat.core.SendingStatusCallback;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -15,6 +18,7 @@ import javax.swing.plaf.basic.BasicPanelUI;
 
 public class ChatUI {
 
+    private final static int PORT = 8888;
     private String appName = "Chat";
     ChatUI chatUI;
     private JFrame newFrame = new JFrame(appName);
@@ -67,7 +71,7 @@ public class ChatUI {
         prePanel.add(usernameChooser, preRight);
         preFrame.add(BorderLayout.CENTER, prePanel);
         preFrame.add(BorderLayout.SOUTH, enterServer);
-        preFrame.setSize(300, 300);
+        preFrame.setSize(400, 300);
         preFrame.setVisible(true);
 
     }
@@ -140,6 +144,15 @@ public class ChatUI {
                 String address = addressBox.getText();
                 String message = messageBox.getText();
                 chatBox.append("<" + username + "> to address <" + address + ">:  " + message + "\n");
+                Sender sender = new Sender(PORT, 4);
+                sender.sendMessage(address, username, message, new SendingStatusCallback() {
+                    public void processSendingStatus(boolean sent, String statusMessage) {
+                        if (!sent) {
+                            chatBox.append("Last message is not send: " + statusMessage);
+                        }
+                    }
+                });
+
                 messageBox.setText("");
             }
             messageBox.requestFocusInWindow();
