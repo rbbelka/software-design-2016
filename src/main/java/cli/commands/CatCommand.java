@@ -14,7 +14,7 @@ import static org.apache.commons.io.FileUtils.readFileToString;
 public class CatCommand implements Command {
 
     public String execute(List<String> args, String input) {
-        if (args.size() == 0) {
+        if (args.isEmpty()) {
             if (input == null)
                 return "";
             return input;

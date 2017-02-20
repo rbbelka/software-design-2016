@@ -14,7 +14,7 @@ public class CommandCall extends Node {
     public List<StringValue> arguments;
 
     public CommandCall(List<StringValue> stringValues) throws NoCommandNameException {
-        if (stringValues.size() < 1) {
+        if (stringValues.isEmpty()) {
             throw new NoCommandNameException("No command to execute");
         }
         this.commandName = stringValues.get(0);
