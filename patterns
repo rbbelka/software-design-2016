@@ -1,0 +1,8 @@
+
+
+Command : Command
+Factory : CommandFactory
+Visitor : Executor
+Singleton : Environment
+
+
